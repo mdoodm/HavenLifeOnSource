@@ -8,6 +8,12 @@
 > [!WARNING]
 > **Spoilers.** This page discusses the end of *Haven*'s story and its epilogue.
 
+<p align="center">
+  <img src="docs/images/life-on-source.jpg" alt="Kay and Yu embracing in a golden field below a waterfall on Source, after the ending" width="900">
+  <br>
+  <em>Still on Source after the credits, roaming free with the mod installed.</em>
+</p>
+
 ---
 
 ## What it does
