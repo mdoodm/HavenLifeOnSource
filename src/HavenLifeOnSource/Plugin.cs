@@ -24,7 +24,7 @@ namespace HavenLifeOnSource
     {
         public const string Guid = "lifeonsource.haven";
         public const string Name = "Haven: Life on Source";
-        public const string Version = "1.4.2";
+        public const string Version = "1.4.3";
 
         // Enhance workshop part added by this mod. The game saves its built state under this id,
         // so it must not change between versions.
@@ -48,6 +48,11 @@ namespace HavenLifeOnSource
         // The cockpit's world map is the ship launch. The ship has already taken off for the ending, so it
         // keeps its vanilla epilogue lock (hidden) instead of falling through to the zone 6 take-off contents.
         internal const string ShipLaunchActivity = "Nest_Cockpit_Adventure_Worldmap";
+
+        // Interacting with a bait station (to call Birble/Girgle for a lift) does nothing in the epilogue.
+        // It's off-island travel, so it opens under the same rule as the bridges.
+        internal const string BaitStationAction = "Panel_GPE_InteractInternal_Bait";
+        internal static ConfigEntry<bool> BirbleTravel;
         internal static ConfigEntry<bool> YuBridgeHesitance;
         internal static ConfigEntry<bool> DisableOziasArrivalLines;
 
@@ -94,6 +99,8 @@ namespace HavenLifeOnSource
                 "After the ending, keep the cockpit's ship launch option hidden (the ship has already taken off).");
             BridgeAccess = Config.Bind("Bridges", "BridgeAccess", BridgeAccessMode.RequireStabilizer,
                 "After the ending, how the epilogue's flow bridge locks are handled. RequireStabilizer: build the Flow Bridge Stabilizer (1 Hyperrust) at the Enhance bench to cross safely, with or without the Flower Boots on. AlwaysOpen: no upgrade needed. Vanilla: bridges stay locked.");
+            BirbleTravel = Config.Bind("Bridges", "BirbleTravel", true,
+                "After the ending, bait stations work again so Birble can give you a lift. Follows BridgeAccess: with RequireStabilizer, build the Flow Bridge Stabilizer first.");
             YuBridgeHesitance = Config.Bind("Bridges", "YuBridgeHesitance", false,
                 "Checkpoint for future content where Yu hesitates to risk crossing the flow bridges. Currently it only logs each crossing; nothing happens in game yet.");
             DisableOziasArrivalLines = Config.Bind("Dialogue", "DisableOziasArrivalLines", true,

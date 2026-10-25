@@ -3,7 +3,7 @@
     <TargetFramework>net472</TargetFramework>
     <AssemblyName>HavenLifeOnSource</AssemblyName>
     <RootNamespace>HavenLifeOnSource</RootNamespace>
-    <Version>1.4.2</Version>
+    <Version>1.4.3</Version>
     <LangVersion>latest</LangVersion>
     <!-- Haven install folder (the one with Haven.exe). Override with -p:HavenDir=... or the HAVEN_DIR environment variable. -->
     <HavenDir Condition="'$(HavenDir)' == '' and '$(HAVEN_DIR)' != ''">$(HAVEN_DIR)</HavenDir>

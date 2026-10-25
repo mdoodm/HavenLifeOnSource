@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.3
+- Fixed Birble fast travel after the ending. Bait stations did nothing because of an epilogue-only lock. They now work under the same rule as the bridges (with the default settings, once the Flow Bridge Stabilizer is built). New setting: `BirbleTravel`.
+
 ## 1.4.2
 - The cockpit's ship launch option no longer appears after the ending. The ship has already taken off, and the option fell through to the zone 6 take-off and repair dialogue. New setting: `DisableShipLaunch`.
 
