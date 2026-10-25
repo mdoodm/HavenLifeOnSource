@@ -64,7 +64,7 @@ Everything can be switched on or off in the config file.
 1. Finish the story by **destroying the Flow Bridge**.
 2. Play the epilogue as normal, then **sleep in the Nest** to trigger the final scene.
 3. After the credits you're back in control in the Nest and the game saves. From then on, **Epilogue** on the title screen resumes here.
-4. Go to the **Enhance** bench and build the **Flow Bridge Stabilizer** (1× Hyperrust) to cross the flow bridges again.
+4. Go to the **Enhance** bench and build the **Flow Bridge Stabilizer** (1× Hyperrust) to cross the flow bridges again. ( This is absolutely up for debate/changes )
 
 Already finished the game without the mod? Load **Epilogue**, get the boots, sleep in the Nest, and watch the credits again. The mod takes over from there.
 
