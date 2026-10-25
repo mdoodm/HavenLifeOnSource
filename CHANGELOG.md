@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.2
+- The cockpit's ship launch option no longer appears after the ending. The ship has already taken off, and the option fell through to the zone 6 take-off and repair dialogue. New setting: `DisableShipLaunch`.
+
 ## 1.4.1
 - Fixed Kay and Yu staying in the epilogue's couch (or bed) pose in the Nest after the ending. The game's normal, context-based idle animations are back. New setting: `RestoreNestIdles`.
 

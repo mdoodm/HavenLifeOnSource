@@ -48,8 +48,9 @@ namespace HavenLifeOnSource
                 return true;
 
             bool lift;
-            if (___context is ActivityParams)
-                lift = Plugin.UnlockNestActivities.Value && Plugin.EndingSeen();
+            if (___context is ActivityParams activity)
+                lift = Plugin.UnlockNestActivities.Value && Plugin.EndingSeen()
+                    && !(Plugin.DisableShipLaunch.Value && activity.name == Plugin.ShipLaunchActivity);
             else if (___context is NestIdleResources)
                 lift = Plugin.RestoreNestIdles.Value && Plugin.EndingSeen();
             else if (___context is ActionParams action && action.name.Contains("BridgeLock"))
