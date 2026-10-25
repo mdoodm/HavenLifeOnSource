@@ -24,7 +24,7 @@ namespace HavenLifeOnSource
     {
         public const string Guid = "lifeonsource.haven";
         public const string Name = "Haven: Life on Source";
-        public const string Version = "1.4.0";
+        public const string Version = "1.4.1";
 
         // Enhance workshop part added by this mod. The game saves its built state under this id,
         // so it must not change between versions.
@@ -41,6 +41,7 @@ namespace HavenLifeOnSource
         internal static Plugin Instance;
         internal static ConfigEntry<bool> Enabled;
         internal static ConfigEntry<bool> UnlockNestActivities;
+        internal static ConfigEntry<bool> RestoreNestIdles;
         internal static ConfigEntry<BridgeAccessMode> BridgeAccess;
         internal static ConfigEntry<bool> YuBridgeHesitance;
         internal static ConfigEntry<bool> DisableOziasArrivalLines;
@@ -82,6 +83,8 @@ namespace HavenLifeOnSource
                 "After the epilogue's final scene and credits, stay in the world instead of returning to the main menu.");
             UnlockNestActivities = Config.Bind("General", "UnlockNestActivities", true,
                 "After the ending, lift the epilogue locks on nest activities (leaving, cooking, crafting, curing, synthesizing...).");
+            RestoreNestIdles = Config.Bind("General", "RestoreNestIdles", true,
+                "After the ending, use the game's normal context-based nest idle animations instead of the epilogue's fixed couch/bed poses.");
             BridgeAccess = Config.Bind("Bridges", "BridgeAccess", BridgeAccessMode.RequireStabilizer,
                 "After the ending, how the epilogue's flow bridge locks are handled. RequireStabilizer: build the Flow Bridge Stabilizer (1 Hyperrust) at the Enhance bench to cross safely, with or without the Flower Boots on. AlwaysOpen: no upgrade needed. Vanilla: bridges stay locked.");
             YuBridgeHesitance = Config.Bind("Bridges", "YuBridgeHesitance", false,

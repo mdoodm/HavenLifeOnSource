@@ -20,7 +20,7 @@ In the base game, when you choose to destroy the Flow Bridge, the epilogue plays
 | --- | --- |
 | **Stay after the credits** | After the final scene and credits you stay in the Nest instead of going to the main menu, and the game saves. *Epilogue* on the title screen now resumes after the ending. |
 | **Saving works again** | The epilogue's save block is lifted once the ending has played. |
-| **The Nest is yours again** | Leaving the Nest, cooking, crafting, curing, synthesizing, eating, drinking, the garden, upgrades and the world map all work again after the ending. |
+| **The Nest is yours again** | Leaving the Nest, cooking, crafting, curing, synthesizing, eating, drinking, the garden, upgrades and the world map all work again after the ending. Kay and Yu's idle animations in the Nest follow the game's usual context-based rules again (resting when tired, at the bench when an upgrade is ready, the occasional couch moment) instead of staying in the epilogue's fixed pose. |
 | **Flow Bridge Stabilizer** | A new upgrade at the **Enhance** bench. It costs **1× Hyperrust** and lets you cross flow bridges safely, with or without the Flower Boots on. If you've already spent all your Hyperrust, you're given 1 for it. |
 | **Fitting chatter** | Once the bridge is severed, the roaming chatter about Ozias coming to Source no longer plays. The rest of the chatter, with the original voice acting, still does. |
 | **Checkpoint for future content** | An optional hook runs before each bridge crossing after the ending, for future content where Yu hesitates to risk the bridges. For now it does nothing in game. |
@@ -48,7 +48,7 @@ Everything can be switched on or off in the config file.
       └─ plugins/
          └─ HavenLifeOnSource.dll
    ```
-4. Start the game. `BepInEx/LogOutput.log` should contain `Haven: Life on Source 1.4.0 loaded`.
+4. Start the game. `BepInEx/LogOutput.log` should contain `Haven: Life on Source 1.4.1 loaded`.
 
 > [!TIP]
 > **Back up your saves first.** They're in `%USERPROFILE%\AppData\LocalLow\TheGameBakers\Haven`.
@@ -70,6 +70,7 @@ The config file `BepInEx/config/lifeonsource.haven.cfg` is created the first tim
 | --- | --- | --- | --- |
 | General | `Enabled` | `true` | Master switch. Stay in the world after the epilogue's credits. |
 | General | `UnlockNestActivities` | `true` | Lift the epilogue's locks on Nest activities after the ending. |
+| General | `RestoreNestIdles` | `true` | Use the game's normal, context-based Nest idle animations after the ending instead of the epilogue's fixed couch/bed poses. |
 | Bridges | `BridgeAccess` | `RequireStabilizer` | `RequireStabilizer`: build the Flow Bridge Stabilizer to cross. `AlwaysOpen`: bridges open right after the ending. `Vanilla`: bridges stay locked. |
 | Bridges | `YuBridgeHesitance` | `false` | Turns on the bridge-crossing checkpoint for future content. Currently it only logs crossings. |
 | Dialogue | `DisableOziasArrivalLines` | `true` | Skip the roaming chatter about Ozias coming to Source once the bridge is severed. |
@@ -127,7 +128,7 @@ Haven is a Unity (Mono) game. Its story runs on **Ink**, **PlayMaker** FSMs and 
 | --- | --- |
 | `LoadMainMenuFsmAction.Execute` | In the epilogue's final scene (`Epilogue_Unique_Sleep_TheEnd`), skip the jump to the main menu. The FSM then moves to its `Trigger` state, where `EndEventHandler` calls `IGSManager.OnFsmEnd` and the scene ends normally. |
 | `IGSManager.OnIGSEnd` | After that scene ends, fade the screen back in if needed, mark the ending story event as played, clear the `Epilogue_PreventGameSave` global variable, and request a save. |
-| `FunctionCondition.IsValidInternal` | After the ending, the `IsInEpilogue` check reports false, but only to `ActivityParams` (Nest activities) and `ActionParams` named `*BridgeLock*` (the home island's bridge locks). Other epilogue effects stay. |
+| `FunctionCondition.IsValidInternal` | After the ending, the `IsInEpilogue` check reports false, but only to `ActivityParams` (Nest activities), `NestIdleResources` (the Nest idle list, whose `Epilogue-Bed`/`Epilogue-Couch` entries would otherwise always win) and `ActionParams` named `*BridgeLock*` (the home island's bridge locks). Other epilogue effects stay. |
 | `WorkshopManager.Instance` + `WorkshopPartInfo` getters | Add the *Flow Bridge Stabilizer* part to the Enhance workshop and show it only after the ending. Its built state is saved by the game under its part id. |
 | `DialogManager.InternalStartStory` | For the zone 6 `ChitChatAfterOzias_*` chatter, preview which variant the Ink cycle is about to play. If it's one about Ozias arriving, count it as played so the next variant plays. Otherwise restore the story state exactly. |
 | `BridgeGPE.OnBridgeTrigger` | Optional bridge-crossing checkpoint (`Plugin.BeforePostEndingBridgeCross`). |

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.1
+- Fixed Kay and Yu staying in the epilogue's couch (or bed) pose in the Nest after the ending. The game's normal, context-based idle animations are back. New setting: `RestoreNestIdles`.
+
 ## 1.4.0 – named "Haven: Life on Source"
 - The plugin is `HavenLifeOnSource.dll`, with GUID `lifeonsource.haven` and config `lifeonsource.haven.cfg`.
 - Saves stay compatible. A Flow Bridge Stabilizer you've already built stays built.

@@ -35,9 +35,10 @@ namespace HavenLifeOnSource
     }
 
     // Every nest activity has an "Epilogue [BackupChat]/[Nothing]" content gated by IsInEpilogue that
-    // replaces the real activity, and the home island's bridges have an "Epilogue-CantLeaveWhileFlowerTrailing"
-    // lock. Once the ending has played, report "not in epilogue" to those only, so the normal contents are
-    // picked while other epilogue effects (unlocks, plants) stay.
+    // replaces the real activity, the home island's bridges have an "Epilogue-CantLeaveWhileFlowerTrailing"
+    // lock, and the nest idle list starts with "Epilogue-Bed"/"Epilogue-Couch" entries that always win in
+    // the epilogue. Once the ending has played, report "not in epilogue" to those only, so the normal
+    // contents and context-based idles are picked while other epilogue effects (unlocks, plants) stay.
     [HarmonyPatch(typeof(FunctionCondition), "IsValidInternal")]
     internal static class EpilogueLockPatch
     {
@@ -49,6 +50,8 @@ namespace HavenLifeOnSource
             bool lift;
             if (___context is ActivityParams)
                 lift = Plugin.UnlockNestActivities.Value && Plugin.EndingSeen();
+            else if (___context is NestIdleResources)
+                lift = Plugin.RestoreNestIdles.Value && Plugin.EndingSeen();
             else if (___context is ActionParams action && action.name.Contains("BridgeLock"))
                 lift = Plugin.EndingSeen() && Plugin.BridgesOpen();
             else
