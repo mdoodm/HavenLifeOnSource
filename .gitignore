@@ -1,0 +1,18 @@
+# Build output
+bin/
+obj/
+dist/
+*.user
+.vs/
+.vscode/
+.idea/
+
+# Never commit game or third-party binaries, decompiled game code, extracted assets or saves
+*.dll
+*.pdb
+decomp/
+extract/
+*.bundle
+*.assets
+Save.json
+Game.json
