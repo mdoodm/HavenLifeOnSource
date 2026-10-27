@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.4
+- New one-step download, `HavenLifeOnSource-1.4.4-with-BepInEx.zip`: the mod together with an unmodified BepInEx 5.4.23.2. Extract it into the Haven folder and play.
+- The plugin-only zip is still available for players who already have BepInEx.
+- The mod's readme and licenses now go in a `HavenLifeOnSource` folder instead of loose in the game folder.
+
 ## 1.4.3
 - Fixed Birble fast travel after the ending. Bait stations did nothing because of an epilogue-only lock. They now work under the same rule as the bridges (with the default settings, once the Flow Bridge Stabilizer is built). New setting: `BirbleTravel`.
 

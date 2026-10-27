@@ -38,23 +38,42 @@ Everything can be switched on or off in the config file.
 ## Requirements
 
 - *Haven* for PC (Steam), Windows. Tested on the October 2025 Steam build (Unity 2019.4.28).
-- [BepInEx 5](https://github.com/BepInEx/BepInEx/releases) for **Windows x64**. Tested with **5.4.23.2**. BepInEx 6 is not supported.
+- That's it. The recommended download already includes the [BepInEx](https://github.com/BepInEx/BepInEx) mod loader.
 
 ## Installation
 
-1. **Install BepInEx 5.** Download `BepInEx_win_x64_5.4.23.2.zip` from the [BepInEx releases](https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.2) and extract it into your Haven folder (the one with `Haven.exe`).
-   *Steam: right-click Haven → Manage → Browse local files.*
-2. **Run Haven once** and quit. This lets BepInEx create its folders.
-3. **Install the mod.** Download the latest `HavenLifeOnSource-x.y.z.zip` from [Releases](../../releases) and extract it into the same Haven folder, so that you end up with:
-   ```
-   Haven/
-   ├─ Haven.exe
-   ├─ winhttp.dll                 (BepInEx)
-   └─ BepInEx/
-      └─ plugins/
-         └─ HavenLifeOnSource.dll
-   ```
-4. Start the game. `BepInEx/LogOutput.log` should contain `Haven: Life on Source 1.4.3 loaded`.
+1. **Download** `HavenLifeOnSource-x.y.z-with-BepInEx.zip` from the [latest release](../../releases/latest).
+2. **Open your Haven folder.** In Steam, right-click **Haven → Manage → Browse local files**. It's the folder with `Haven.exe` in it.
+3. **Extract the zip into that folder.** Right-click the zip → **Extract All…**, choose the Haven folder, and allow it to replace files if asked.
+4. **Play.** Start Haven from Steam as usual. That's all.
+
+When it's done, your Haven folder looks like this:
+
+```
+Haven/
+├─ Haven.exe
+├─ winhttp.dll                 ← mod loader (BepInEx)
+├─ doorstop_config.ini         ← mod loader (BepInEx)
+├─ HavenLifeOnSource/          ← this mod's readme and licenses
+└─ BepInEx/
+   ├─ core/                    ← mod loader (BepInEx)
+   └─ plugins/
+      └─ HavenLifeOnSource.dll ← the mod
+```
+
+<details>
+<summary>Already have BepInEx 5 installed?</summary>
+
+Download `HavenLifeOnSource-x.y.z.zip` (plugin only) instead and extract it into your Haven folder. Use BepInEx 5 for Windows x64; BepInEx 6 isn't supported.
+
+</details>
+
+<details>
+<summary>Is it working?</summary>
+
+After starting the game once, open `BepInEx/LogOutput.log` in the Haven folder. It should contain `Haven: Life on Source 1.4.4 loaded`. If the `BepInEx` folder has no `LogOutput.log`, the loader didn't start: make sure `winhttp.dll` sits right next to `Haven.exe`.
+
+</details>
 
 > [!TIP]
 > **Back up your saves first.** They're in `%USERPROFILE%\AppData\LocalLow\TheGameBakers\Haven`.
@@ -85,7 +104,7 @@ The config file `BepInEx/config/lifeonsource.haven.cfg` is created the first tim
 
 ## Uninstalling
 
-Delete `BepInEx/plugins/HavenLifeOnSource.dll`. To remove BepInEx too, also delete the `BepInEx` folder, `winhttp.dll`, `doorstop_config.ini` and `.doorstop_version`.
+Delete `BepInEx/plugins/HavenLifeOnSource.dll` and the `HavenLifeOnSource` folder. To remove the BepInEx mod loader too, also delete the `BepInEx` folder, `winhttp.dll`, `doorstop_config.ini`, `.doorstop_version` and `changelog.txt`.
 
 Saves made with the mod still load without it. You'll simply be back to the vanilla epilogue behaviour.
 

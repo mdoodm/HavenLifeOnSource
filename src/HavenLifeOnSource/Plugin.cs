@@ -24,7 +24,7 @@ namespace HavenLifeOnSource
     {
         public const string Guid = "lifeonsource.haven";
         public const string Name = "Haven: Life on Source";
-        public const string Version = "1.4.3";
+        public const string Version = "1.4.4";
 
         // Enhance workshop part added by this mod. The game saves its built state under this id,
         // so it must not change between versions.
