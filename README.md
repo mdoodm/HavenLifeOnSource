@@ -69,6 +69,13 @@ Every feature can be switched on or off in the [config file](#configuration).
 3. **Extract the zip into that folder.** Right-click the zip → **Extract All…**, choose the Haven folder, and allow it to replace files if asked.
 4. **Play.** Start Haven from Steam as usual.
 
+> [!IMPORTANT]
+> **Linux / Steam Deck (Proton) users:** also set a launch option, or the mod loader won't start. In Steam, right-click **Haven → Properties → General → Launch Options** and enter:
+> ```
+> WINEDLLOVERRIDES="winhttp=n,b" %command%
+> ```
+> Check that it starts with `WINE` and is spelled exactly as above.
+
 > [!TIP]
 > **Back up your saves first.** They're in `%USERPROFILE%\AppData\LocalLow\TheGameBakers\Haven`.
 
@@ -99,7 +106,7 @@ Download `HavenLifeOnSource-x.y.z.zip` (plugin only) instead and extract it into
 <details>
 <summary><strong>Is it working?</strong></summary>
 
-After starting the game once, open `BepInEx/LogOutput.log` in the Haven folder. It should contain `Haven: Life on Source 1.4.5 loaded`. If the `BepInEx` folder has no `LogOutput.log`, the loader didn't start: make sure `winhttp.dll` sits right next to `Haven.exe`.
+After starting the game once, open `BepInEx/LogOutput.log` in the Haven folder. It should contain `Haven: Life on Source 1.4.5 loaded`. If the `BepInEx` folder has no `LogOutput.log`, the loader didn't start: make sure `winhttp.dll` sits right next to `Haven.exe`. On Linux or Steam Deck, also make sure the `WINEDLLOVERRIDES="winhttp=n,b" %command%` launch option is set.
 
 </details>
 
