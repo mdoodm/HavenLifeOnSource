@@ -83,6 +83,19 @@ namespace HavenLifeOnSource
         }
     }
 
+    // The flow arcs (the huge flow strands in the sky) belong to the severed flow bridge, so hide them
+    // once the ending has played. Arcs are hidden as they enable; Plugin.HideFlowArcs covers the ones
+    // already loaded when the ending plays.
+    [HarmonyPatch(typeof(FlowArcRenderer), "OnEnable")]
+    internal static class FlowArcHidePatch
+    {
+        private static void Postfix(FlowArcRenderer __instance)
+        {
+            if (Plugin.HideSkyFlowArcs.Value && Plugin.IsPostEnding())
+                Plugin.HideFlowArc(__instance);
+        }
+    }
+
     // Adds the Flow Bridge Stabilizer to the Enhance workshop.
     [HarmonyPatch(typeof(WorkshopManager), nameof(WorkshopManager.Instance), MethodType.Getter)]
     internal static class WorkshopInjectPatch

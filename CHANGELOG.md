@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.5
+- The huge flow strands in the sky (the flow arcs) are hidden after the ending, to match the severed flow bridge. New setting: `HideSkyFlowArcs`.
+
 ## 1.4.4
 - New one-step download, `HavenLifeOnSource-1.4.4-with-BepInEx.zip`: the mod together with an unmodified BepInEx 5.4.23.2. Extract it into the Haven folder and play.
 - The plugin-only zip is still available for players who already have BepInEx.

@@ -99,7 +99,7 @@ Download `HavenLifeOnSource-x.y.z.zip` (plugin only) instead and extract it into
 <details>
 <summary><strong>Is it working?</strong></summary>
 
-After starting the game once, open `BepInEx/LogOutput.log` in the Haven folder. It should contain `Haven: Life on Source 1.4.4 loaded`. If the `BepInEx` folder has no `LogOutput.log`, the loader didn't start: make sure `winhttp.dll` sits right next to `Haven.exe`.
+After starting the game once, open `BepInEx/LogOutput.log` in the Haven folder. It should contain `Haven: Life on Source 1.4.5 loaded`. If the `BepInEx` folder has no `LogOutput.log`, the loader didn't start: make sure `winhttp.dll` sits right next to `Haven.exe`.
 
 </details>
 
@@ -129,6 +129,7 @@ After starting the game once, open `BepInEx/LogOutput.log` in the Haven folder. 
 | Bridges | `BirbleTravel` | `true` | Bait stations work again after the ending, so Birble can give you a lift. Follows `BridgeAccess`: with `RequireStabilizer`, build the Flow Bridge Stabilizer first. |
 | Bridges | `YuBridgeHesitance` | `false` | Turns on the bridge-crossing checkpoint for future content. Currently it only logs crossings. |
 | Dialogue | `DisableOziasArrivalLines` | `true` | Skip the roaming chatter about Ozias coming to Source once the bridge is severed. |
+| Visuals | `HideSkyFlowArcs` | `true` | Hide the huge flow strands in the sky left over from the severed flow bridge, once the ending has played. |
 
 ## Known limitations
 

@@ -24,7 +24,7 @@ namespace HavenLifeOnSource
     {
         public const string Guid = "lifeonsource.haven";
         public const string Name = "Haven: Life on Source";
-        public const string Version = "1.4.4";
+        public const string Version = "1.4.5";
 
         // Enhance workshop part added by this mod. The game saves its built state under this id,
         // so it must not change between versions.
@@ -55,6 +55,7 @@ namespace HavenLifeOnSource
         internal static ConfigEntry<bool> BirbleTravel;
         internal static ConfigEntry<bool> YuBridgeHesitance;
         internal static ConfigEntry<bool> DisableOziasArrivalLines;
+        internal static ConfigEntry<bool> HideSkyFlowArcs;
 
         // Roaming chatter from zone 6 still cycles once the flow bridge is severed. These knots cycle
         // through stitches A..H; the variants about Ozias coming to Source are skipped, identified by
@@ -105,6 +106,8 @@ namespace HavenLifeOnSource
                 "Checkpoint for future content where Yu hesitates to risk crossing the flow bridges. Currently it only logs each crossing; nothing happens in game yet.");
             DisableOziasArrivalLines = Config.Bind("Dialogue", "DisableOziasArrivalLines", true,
                 "Once the flow bridge is severed, skip the roaming chatter about Ozias coming to Source.");
+            HideSkyFlowArcs = Config.Bind("Visuals", "HideSkyFlowArcs", true,
+                "After the ending, hide the flow arcs (the huge flow strands in the sky) left over from the severed flow bridge.");
             GameEventManager.OnGameStateDataLoaded += OnGameStateDataLoaded;
             new Harmony(Guid).PatchAll();
             Log.LogInfo($"{Name} {Version} loaded");
@@ -149,6 +152,31 @@ namespace HavenLifeOnSource
                     return false;
             }
             return true;
+        }
+
+        // Stops the arc from updating (so its line renderers are never re-enabled) and hides its renderers.
+        internal static void HideFlowArc(FlowArcRenderer arc)
+        {
+            arc.enabled = false;
+            if (arc.mainLineRenderer != null)
+                arc.mainLineRenderer.enabled = false;
+            if (arc.additionalsLineRenderers != null)
+            {
+                foreach (var lr in arc.additionalsLineRenderers)
+                    if (lr != null)
+                        lr.enabled = false;
+            }
+            if (arc.centerLaser != null)
+                arc.centerLaser.SetActive(false);
+            Log.LogInfo("Hid flow arc: " + arc.name);
+        }
+
+        internal static void HideFlowArcs()
+        {
+            if (!HideSkyFlowArcs.Value)
+                return;
+            foreach (var arc in UnityEngine.Object.FindObjectsOfType<FlowArcRenderer>())
+                HideFlowArc(arc);
         }
 
         private static StoryEventParams FindEndingEvent()
@@ -239,6 +267,7 @@ namespace HavenLifeOnSource
 
             // The epilogue blocks game saves; lift that so "Epilogue" on the title screen resumes here.
             ClearPreventSave();
+            HideFlowArcs();
             GrantHyperrustIfNeeded();
             GameEventManager.RequestSave(SavingIndicatorHUD.FeedbackType.Immediately);
             Log.LogInfo("Saved post-ending state; free roam continues");
